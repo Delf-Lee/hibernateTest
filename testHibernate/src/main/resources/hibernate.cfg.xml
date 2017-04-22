@@ -16,6 +16,9 @@
 		
 		<mapping class="testHibernate.Product"></mapping>
 		<mapping class="testHibernate.Category"></mapping>
+		
+		<mapping class="testHibernate.Person"></mapping>
+		<mapping class="testHibernate.License"></mapping>
 
 	</session-factory>
 </hibernate-configuration>
