@@ -1,38 +1,33 @@
 
 package testHibernate;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
- 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name="Product")
-public class Product {
+public class Category {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="product_id")
+	@Column(name="category_id")
 	private int id;
-	
 	private String name;
 	
-	private int price;
-	
-	private String description;
-	
-	@ManyToOne
-	@JoinColumn(name="category_id") // foreign key in child table
-	private Category category;
+	// specify cascade opt in parent table
+	@OneToMany(mappedBy="category", cascade=CascadeType.ALL) // joined field name in Product class 
+	private Set<Product> products = new HashSet<Product>();
 }
